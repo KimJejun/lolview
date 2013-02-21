@@ -1,28 +1,77 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><g:layoutTitle default="Grails"/></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+<html lang="en">
+<head>
+<r:require modules="bootstrap" />
+<r:layoutResources />
+<style type="text/css">
+body {
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+/* Custom container */
+.container-narrow {
+	margin: 0 auto;
+	max-width: 1000px;
+}
+
+.container-narrow>hr {
+	margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+	margin: 60px 0;
+	text-align: center;
+}
+
+/* Supporting marketing content */
+.marketing {
+	margin: 60px 0;
+}
+
+.marketing p+h4 {
+	margin-top: 28px;
+}
+.lable-win {
+	color: blue;font-weight: bold;display: block;font-size: 1.3em;
+}
+.lable-lose {
+	color: red;font-weight: bold;display: block;
+}
+.lable-kill {
+	color: #B22222;font-weight: bold;font-size: 1.2em;
+}
+.lable-dead {
+	color: #602F6B;font-weight: bold;font-size: 1.1em;
+}
+.lable-normal-bold {
+	color:black;font-weight: bold;display: block;
+}
+.lable-gold {color: #B8860B;font-weight: bold;font-size: 1.1em;}
+</style>
+</head>
+<body>
+	<div class="container-narrow">
+		<div class="masthead" id="masterhead">
+			<ul class="nav nav-pills pull-right">
+				<li class="active"><g:link controller="main">Home</g:link> </li>
+				<li><g:link controller="main" action="about">About</g:link></li>
+				<li><g:link controller="main" action="contact">Contact</g:link></li>
+				<li><g:link controller="main" action="matchInfo">대회정보</g:link></li>
+			</ul>
+			<h3 class="muted">LOL Stats</h3>
+		</div>
+		<hr>
+		
 		<g:layoutHead/>
+		<g:layoutBody />
 		<r:layoutResources />
-	</head>
-	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
-		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
-		<g:javascript library="application"/>
-		<r:layoutResources />
-	</body>
+		
+		<hr>
+		<div class="footer">
+			<p>&copy; Company 2013</p>
+		</div>
+	</div>
+</body>
 </html>
