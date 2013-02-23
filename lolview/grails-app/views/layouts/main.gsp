@@ -53,17 +53,51 @@ body {
 </head>
 <body>
 	<div class="container-narrow">
+		<sec:ifLoggedIn>
+		Welcome <sec:loggedInUserInfo field="username"/> Back! <sec:loggedInUserInfo field="authorities"/>
+		</sec:ifLoggedIn>
 		<div class="masthead" id="masterhead">
 			<ul class="nav nav-pills pull-right">
 				<li class="active"><g:link controller="main">Home</g:link> </li>
 				<li><g:link controller="main" action="about">About</g:link></li>
 				<li><g:link controller="main" action="contact">Contact</g:link></li>
 				<li><g:link controller="main" action="matchInfo">대회정보</g:link></li>
+				<sec:ifLoggedIn>
+					<li><g:link controller="logout" action="index">Log out</g:link></li>
+				</sec:ifLoggedIn>
+				<sec:ifNotLoggedIn>
+					<li>
+					
+					<div class="btn-group">
+					  <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#" >
+					    Sign in
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu">
+						<li><g:link controller="login" action="index">Sign in</g:link></li>
+						<li><g:link controller="user" action="create">registor</g:link></li>
+					  </ul>
+					</div>
+					</li>
+				</sec:ifNotLoggedIn>
+				<sec:ifAllGranted roles="ROLE_ADMIN">
+					<li>
+					<div class="btn-group">
+					  <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#" >
+					   Manage
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu">
+						<li><g:link controller="user" action="list">회원관리</g:link></li>
+						<li><g:link controller="role" action="list">권한관리</g:link></li>
+					  </ul>
+					</div>
+					</li>
+				</sec:ifAllGranted>
 			</ul>
 			<h3 class="muted">LOL Stats</h3>
 		</div>
 		<hr>
-		
 		<g:layoutHead/>
 		<g:layoutBody />
 		<r:layoutResources />

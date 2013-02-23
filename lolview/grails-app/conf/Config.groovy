@@ -77,7 +77,7 @@ log4j = {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
 
-    error  'org.codehaus.groovy.grails.web.servlet',        // controllers
+    info  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
            'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
@@ -88,4 +88,14 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+		   
+	info 'org.springframework.security'
+	
+	debug 'org.grails.datastore', 'org.neo4j', 'org.springframework.security'
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'kr.lolview.security.User'
+grails.plugins.springsecurity.authority.className = 'kr.lolview.security.Role'
+grails.plugins.springsecurity.securityConfigType = "Annotation"
+grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/main'

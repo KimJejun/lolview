@@ -30,11 +30,14 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
+		mavenRepo "http://m2.neo4j.org/"
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
         // runtime 'mysql:mysql-connector-java:5.1.20'
+		build "org.neo4j:neo4j:1.8"
+		build 'org.neo4j:neo4j-rest-graphdb:1.8'
     }
 
     plugins {
@@ -53,5 +56,10 @@ grails.project.dependency.resolution = {
 
         compile ':cache:1.0.0'
 		compile ":twitter-bootstrap:2.3.0"
+		compile (":neo4j:1.0.0.M5") {
+			excludes "tomcat", "jquery"
+		}
+		compile ":spring-security-core:1.2.7.3"
+		compile ":fields:1.3"
     }
 }
