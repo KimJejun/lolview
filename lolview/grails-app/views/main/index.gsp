@@ -42,7 +42,5 @@
 				magna.</p>
 		</div>
 	</div>
-
-	<hr>
 </body>
 </html>

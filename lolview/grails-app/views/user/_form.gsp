@@ -1,82 +1,85 @@
-<html>
-<head>
-<meta name='layout' content='main' />
-<title><g:message code="springSecurity.login.title" /></title>
-<style type='text/css' media='screen'>
-.form-signin {
-	max-width: 300px;
-	padding: 19px 29px 29px;
-	margin: 0 auto 20px;
-	background-color: #fff;
-	border: 1px solid #e5e5e5;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-}
+<%@ page import="kr.lolview.security.User" %>
 
-.form-signin .form-signin-heading,.form-signin .checkbox {
-	margin-bottom: 10px;
-}
+<g:hiddenField name="renderView" value="_form"/>
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'username', 'error')} required control-group">
+	<label for="username" class="control-label">
+		<g:message code="user.username.label" default="Username" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="controls">
+		<g:textField name="username" required="" value="${userInstance?.username}"/>
+    </div>
+</div>
 
-.form-signin input[type="text"],.form-signin input[type="password"] {
-	font-size: 16px;
-	height: auto;
-	margin-bottom: 15px;
-	padding: 7px 9px;
-}
-
-.control-group {
-	margin-bottom: 0px
-}
-</style>
-</head>
-
-<body>
-	<div class='inner'>
-		<g:if test='${flash.message}'>
-			<div class='login_message'>
-				${flash.message}
-			</div>
-		</g:if>
-
-
-		<g:form action='save' method='POST' id='loginForm' class='form-signin' autocomplete='off'>
-			<h2 class="form-signin-heading">Please Registor</h2>
-
-			<div
-				class="control-group ${hasErrors(bean: user, field: 'username', 'error')} ">
-				<g:textField name="username" value="${user?.username}"
-					placeholder="Email address" />
-				<g:hasErrors bean="${user}">
-					<g:renderErrors bean="${user}" as="list" field="username" />
-				</g:hasErrors>
-			</div>
-			<div
-				class="control-group ${hasErrors(bean: user, field: 'password', 'error')} ">
-				<g:textField name="password" value="${user?.password}" placeholder="Password" />
-				<g:hasErrors bean="${user}">
-					<g:renderErrors bean="${user}" as="list" field="password" />
-				</g:hasErrors>
-			</div>
-			<div
-				class="control-group ${hasErrors(bean: user, field: 'summonerName', 'error')} ">
-				<g:textField name="summonerName" value="${user?.summonerName}"
-					placeholder="소환사이름" />
-			</div>
-			<button class="btn btn-large btn-primary" type="submit">Registor</button>
-			<g:link controller="main">취소</g:link>
-		</g:form>
-
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'password', 'error')} required control-group">
+	<label for="password" class="control-label">
+		<g:message code="user.password.label" default="Password" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="controls">
+		<g:passwordField name="password" maxlength="20" required="" value="${userInstance?.password}"/>
 	</div>
-	<script type='text/javascript'>
-	<!--
-		(function() {
-			document.forms['loginForm'].elements['j_username'].focus();
-		})();
-	// -->
-	</script>
-</body>
-</html>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'summonerName', 'error')} control-group">
+	<label for="summonerName" class="control-label">
+		<g:message code="user.summonerName.label" default="Summoner Name" />
+		
+	</label>
+	<div class="controls">
+		<g:textField name="summonerName" maxlength="15" value="${userInstance?.summonerName}"/>
+	</div>
+</div>
+<sec:ifAllGranted roles="ROLE_ADMIN">
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'accountExpired', 'error')} control-group">
+	<label for="accountExpired" class="control-label">
+		<g:message code="user.accountExpired.label" default="Account Expired" />
+		
+	</label>
+	<div class="controls">
+		<g:checkBox name="accountExpired" value="${userInstance?.accountExpired}" />
+	</div>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'accountLocked', 'error')} control-group">
+	<label for="accountLocked" class="control-label">
+		<g:message code="user.accountLocked.label" default="Account Locked" />
+		
+	</label>
+	<div class="controls">
+		<g:checkBox name="accountLocked" value="${userInstance?.accountLocked}" />
+	</div>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'authorities', 'error')} control-group">
+	<label for="authorities" class="control-label">
+		<g:message code="user.authorities.label" default="Authorities" />
+		
+	</label>
+	<div class="controls">
+		<g:select name="authorities" from="${kr.lolview.security.Role.list()}" multiple="multiple" optionKey="id" size="5" value="${userInstance?.authorities*.id}" 
+			optionValue="authority" class="many-to-many"/>
+	</div>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'enabled', 'error')} control-group">
+	<label for="enabled" class="control-label">
+		<g:message code="user.enabled.label" default="Enabled" />
+		
+	</label>
+	<div class="controls">
+		<g:checkBox name="enabled" value="${userInstance?.enabled}" />
+	</div>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'passwordExpired', 'error')} control-group">
+	<label for="passwordExpired" class="control-label">
+		<g:message code="user.passwordExpired.label" default="Password Expired" />
+		
+	</label>
+	<div class="controls">
+		<g:checkBox name="passwordExpired" value="${userInstance?.passwordExpired}" />
+	</div>
+</div>
+</sec:ifAllGranted>
+

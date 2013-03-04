@@ -3,6 +3,9 @@
 <head>
 <r:require modules="bootstrap" />
 <r:layoutResources />
+<link rel="stylesheet" type="text/css" href="${resource(dir: 'css/ui-lightness', file: 'jquery-ui-1.10.1.custom.min.css')}" />
+<link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'custom.css')}" />
+<script type="text/javascript" src="${resource(dir: 'js/jquery/ui', file: 'jquery-ui-1.10.1.custom.min.js')}"></script>
 <style type="text/css">
 body {
 	padding-top: 20px;
@@ -53,18 +56,21 @@ body {
 </head>
 <body>
 	<div class="container-narrow">
-		<sec:ifLoggedIn>
-		Welcome <sec:loggedInUserInfo field="username"/> Back! <sec:loggedInUserInfo field="authorities"/>
-		</sec:ifLoggedIn>
+		<div style="text-align: right">
+			<sec:ifLoggedIn>
+				<sec:loggedInUserInfo field="authorities"/>
+				<g:set var="userId"><sec:loggedInUserInfo field='id'/></g:set>
+				<i class="icon-user"></i>
+				<g:link controller="user" action="show" params="[id:  userId]"><sec:loggedInUserInfo field="username"/></g:link>
+				<g:link controller="logout" action="index">Log out</g:link>
+			</sec:ifLoggedIn>
+		</div>
 		<div class="masthead" id="masterhead">
 			<ul class="nav nav-pills pull-right">
 				<li class="active"><g:link controller="main">Home</g:link> </li>
 				<li><g:link controller="main" action="about">About</g:link></li>
 				<li><g:link controller="main" action="contact">Contact</g:link></li>
 				<li><g:link controller="main" action="matchInfo">대회정보</g:link></li>
-				<sec:ifLoggedIn>
-					<li><g:link controller="logout" action="index">Log out</g:link></li>
-				</sec:ifLoggedIn>
 				<sec:ifNotLoggedIn>
 					<li>
 					
@@ -75,7 +81,7 @@ body {
 					  </a>
 					  <ul class="dropdown-menu">
 						<li><g:link controller="login" action="index">Sign in</g:link></li>
-						<li><g:link controller="user" action="create">registor</g:link></li>
+						<li><g:link controller="user" action="createNewUser">registor</g:link></li>
 					  </ul>
 					</div>
 					</li>
@@ -101,10 +107,9 @@ body {
 		<g:layoutHead/>
 		<g:layoutBody />
 		<r:layoutResources />
-		
 		<hr>
 		<div class="footer">
-			<p>&copy; Company 2013</p>
+			<p>Developed By 제다이마스터</p>
 		</div>
 	</div>
 </body>

@@ -1,5 +1,7 @@
 package kr.lolview.security
 
+import kr.lolview.UserRelation;
+
 class User {
 	transient springSecurityService
 
@@ -11,13 +13,13 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 	
-	static hasMany = [authorities:Role]
+	static hasMany = [authorities:Role, likes: UserRelation, hates: UserRelation]
 	
 	static mapWith = "neo4j"
 
 	static constraints = {
 		username(blank: false, unique: true)
-		password(blank: false, size:5..20)
+		password(blank: false, minSize: 5)
 		summonerName(blank:true, size:0..15)
 	}
 
@@ -35,7 +37,7 @@ class User {
 	}
 
 	def beforeUpdate() {
-		/*if (isDirty('password')) {
+		/*if (this.isDirty('password')) {
 			encodePassword()
 		}*/
 	}

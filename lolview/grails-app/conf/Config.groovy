@@ -89,9 +89,9 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 		   
-	info 'org.springframework.security'
+	debug 'org.springframework.security'
 	
-	debug 'org.grails.datastore', 'org.neo4j', 'org.springframework.security'
+	info 'org.grails.datastore', 'org.neo4j'
 }
 
 // Added by the Spring Security Core plugin:

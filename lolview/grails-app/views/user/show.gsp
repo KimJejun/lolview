@@ -9,11 +9,14 @@
 	</head>
 	<body>
 		<div class="nav" role="navigation">
-			<g:link class="list" action="list" class="btn"><g:message code="default.list.label" args="[entityName]" /></g:link>
-			<g:link class="create" action="create" class="btn"><g:message code="default.new.label" args="[entityName]" /></g:link>
+			<sec:ifAllGranted roles="ROLE_ADMIN">
+				<g:link class="list" action="list" class="btn"><g:message code="default.list.label" args="[entityName]" /></g:link>
+				<g:link class="create" action="create" class="btn"><g:message code="default.new.label" args="[entityName]" /></g:link>
+			</sec:ifAllGranted>
 		</div>
 		<div id="show-user" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+			<hr>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -28,6 +31,16 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${userInstance?.summonerName}">
+				<li class="fieldcontain">
+					<span id="summonerName-label" class="property-label"><g:message code="user.summonerName.label" default="Summoner Name" /></span>
+					
+						<span class="property-value" aria-labelledby="summonerName-label"><g:fieldValue bean="${userInstance}" field="summonerName"/></span>
+					
+				</li>
+				</g:if>
+				
+				<sec:ifAllGranted roles="ROLE_ADMIN">
 				<g:if test="${userInstance?.password}">
 				<li class="fieldcontain">
 					<span id="password-label" class="property-label"><g:message code="user.password.label" default="Password" /></span>
@@ -37,14 +50,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${userInstance?.summonerName}">
-				<li class="fieldcontain">
-					<span id="summonerName-label" class="property-label"><g:message code="user.summonerName.label" default="Summoner Name" /></span>
-					
-						<span class="property-value" aria-labelledby="summonerName-label"><g:fieldValue bean="${userInstance}" field="summonerName"/></span>
-					
-				</li>
-				</g:if>
 			
 				<g:if test="${userInstance?.accountExpired}">
 				<li class="fieldcontain">
@@ -69,7 +74,7 @@
 					<span id="authorities-label" class="property-label"><g:message code="user.authorities.label" default="Authorities" /></span>
 					
 						<g:each in="${userInstance.authorities}" var="a">
-						<span class="property-value" aria-labelledby="authorities-label"><g:link controller="role" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="authorities-label"><g:link controller="role" action="show" id="${a.id}">${a?.authority}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -92,12 +97,13 @@
 					
 				</li>
 				</g:if>
-			
+				</sec:ifAllGranted>
 			</ol>
+			<hr>
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${userInstance?.id}" />
-					<g:link class="edit" action="edit" id="${userInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<g:link class="edit" action="edit" id="${userInstance?.id}" class="btn btn-small btn-primary"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="btn btn-small btn-danger delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>

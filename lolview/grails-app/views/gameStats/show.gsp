@@ -10,6 +10,7 @@
 <style type="text/css">
 .list.recent-simple {
 	font-size: 0.8em;
+	display: inline-block;
 }
 .list.recent-simple li {
 	float: left;
@@ -28,13 +29,32 @@
 }
 
 .champion-thumbnail-small {
-	width: 18px;height: 18px;
+	width: 16px;height: 16px;
 }
 
 .champion-thumbnail-msmall {
-	width: 30px;height: 30px;
+	width: 25px;height: 25px;
 }
 </style>
+<script type="text/javascript">
+$(function(){
+	$('.game_detail').hide();
+
+	 function runEffect($targetDiv) {
+	      // most effect types need no options passed by default
+	      var options = {};
+	 
+	      // run the effect
+	      $targetDiv.show( 'clip', options, 500 );
+    };
+	 
+    // set effect from select menu value
+    $(".btn-game-detail-show").click(function() {
+      	runEffect($(this).parent().parent().next());
+      	return false;
+    });
+})
+</script>
 </head>
 <body>
 	<div>
@@ -42,6 +62,9 @@
 			<g:textField name="summonerName" class="input-xlarge" placeholder="소환사명" />
 			<button type="submit" class="btn btn-success">Find!</button>
 		</g:form>
+	</div>
+	<div>
+		<h4>${summonerName}</h4> 최근 10경기 (8승 2패) 
 	</div>
 	
 	<div>
@@ -52,7 +75,7 @@
 		</ul>
 	</div>
 	<div>
-		<ul class="list recent-simple">
+		<ul class="list recent-simple" >
 			<li class="alert alert-success" style="margin-bottom: 5px;padding-bottom: 12px;padding-top: 3px;">
 				<ul class="list recent-simple-detail">
 					<li style="width: 10%">
@@ -60,7 +83,7 @@
 						럭스<br>
 						광명의소녀<br>
 					</li>
-					<li style="width: 12%">
+					<li style="width: 12%" class="text-align-center">
 						<span class="lable-win">승리</span>
 						<span class="lable-normal-bold">일반게임</span>
 						4인큐<br>
@@ -79,7 +102,7 @@
 					</li>
 					<li style="width: 15%">
 						<img src="http://s.op.gg/images/spells/14.png" class="champion-thumbnail-msmall img-rounded">
-						<img src="http://s.op.gg/images/spells/4.png" class="champion-thumbnail-msmall img-rounded"><br>
+						<img src="http://s.op.gg/images/spells/6.png" class="champion-thumbnail-msmall img-rounded"><br>
 						<img src="http://na.leagueoflegends.com/sites/default/files/game_data/1.0.0.154/content/item/3020.png" class="champion-thumbnail-msmall img-rounded">
 						<img src="http://na.leagueoflegends.com/sites/default/files/game_data/1.0.0.154/content/item/3020.png" class="champion-thumbnail-msmall img-rounded">
 						<img src="http://na.leagueoflegends.com/sites/default/files/game_data/1.0.0.154/content/item/3020.png" class="champion-thumbnail-msmall img-rounded"><br>
@@ -87,7 +110,7 @@
 						<img src="http://na.leagueoflegends.com/sites/default/files/game_data/1.0.0.154/content/item/3020.png" class="champion-thumbnail-msmall img-rounded">
 						<img src="http://na.leagueoflegends.com/sites/default/files/game_data/1.0.0.154/content/item/3020.png" class="champion-thumbnail-msmall img-rounded">
 					</li>
-					<li style="width: 18%">
+					<li style="width: 16%">
 						<img src="http://na.leagueoflegends.com/sites/default/files/game_data/1.0.0.154/content/champion/icons/114.jpg" class="champion-thumbnail-small img-rounded">
 						<a href="#" target="_blank" style="color: inherit;">최다안</a><br>
 						<img src="http://na.leagueoflegends.com/sites/default/files/game_data/1.0.0.154/content/champion/icons/114.jpg" class="champion-thumbnail-small img-rounded">
@@ -99,7 +122,7 @@
 						<img src="http://na.leagueoflegends.com/sites/default/files/game_data/1.0.0.154/content/champion/icons/114.jpg" class="champion-thumbnail-small img-rounded">
 						<a href="#" target="_blank" style="color: inherit;">최다안</a>						
 					</li>
-					<li style="width: 18%">
+					<li style="width: 16%">
 						<img src="http://na.leagueoflegends.com/sites/default/files/game_data/1.0.0.154/content/champion/icons/114.jpg" class="champion-thumbnail-small img-rounded">
 						<a href="#" target="_blank" style="color: inherit;">최다안</a><br>
 						<img src="http://na.leagueoflegends.com/sites/default/files/game_data/1.0.0.154/content/champion/icons/114.jpg" class="champion-thumbnail-small img-rounded">

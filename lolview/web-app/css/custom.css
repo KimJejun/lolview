@@ -1,0 +1,23 @@
+.footer {
+	text-align: center;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.list.recent-simple-detail li {
+	text-align: center;
+}
+
+hr {
+  border-top: 1px solid #DACFCF;
+  border-bottom: 1px solid #ffffff;
+}
+
+hr.middle {
+  margin: 20px 10px;
+  border: 0;
+  border-top: 1px solid #B0BEF7;
+  border-bottom: 1px solid #ffffff;
+}
