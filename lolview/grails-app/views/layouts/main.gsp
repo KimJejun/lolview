@@ -81,7 +81,7 @@ body {
 					  </a>
 					  <ul class="dropdown-menu">
 						<li><g:link controller="login" action="index">Sign in</g:link></li>
-						<li><g:link controller="user" action="createNewUser">registor</g:link></li>
+						<li><g:link controller="user" action="createNewUser" params="[renderView: '_formForUser']">registor</g:link></li>
 					  </ul>
 					</div>
 					</li>

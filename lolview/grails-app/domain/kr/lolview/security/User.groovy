@@ -9,9 +9,9 @@ class User {
 	String password
 	String summonerName
 	boolean enabled = true
-	boolean accountExpired
-	boolean accountLocked
-	boolean passwordExpired
+	boolean accountExpired = false
+	boolean accountLocked = false
+	boolean passwordExpired = false
 	
 	static hasMany = [authorities:Role, likes: UserRelation, hates: UserRelation]
 	
@@ -20,11 +20,10 @@ class User {
 	static constraints = {
 		username(blank: false, unique: true)
 		password(blank: false, minSize: 5)
-		summonerName(blank:true, size:0..15)
+		summonerName(nullable: true, size:0..15)
 	}
 
 	static mapping = {
-		id generator : 'increment'
 		password column: '`password`'
 	}
 

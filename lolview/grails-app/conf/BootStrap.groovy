@@ -27,12 +27,9 @@ class BootStrap {
 			new Role(authority: 'ROLE_USER', createdAt: new Date()).save(flush: true)
 		}
 		
+		
 		if (!User.findByUsername('admin')) {
-			def user = new User(username: 'test', password: 'test')
-			user.authorities = [Role.findByAuthority('ROLE_USER')]
-			
-			println user.save(flush: true)
-			new User(username: 'admin', password: 'admin', authorities: [Role.findByAuthority('ROLE_ADMIN'), Role.findByAuthority('ROLE_USER')] ).save(flush: true)
+			new User(username: 'admin', password: 'lolview_admin', authorities: [Role.findByAuthority('ROLE_ADMIN'), Role.findByAuthority('ROLE_USER')] ).save(flush: true)
 		}
 	}
 }
