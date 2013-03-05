@@ -38,13 +38,16 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.20'
 		build "org.neo4j:neo4j:1.8"
 		build 'org.neo4j:neo4j-rest-graphdb:1.8'
+		test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
     }
 
     plugins {
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.0"
         runtime ":resources:1.1.6"
-		runtime ":spock:0.7"
+		test(":spock:0.7") {
+			exclude "spock-grails-support"
+	    }
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
