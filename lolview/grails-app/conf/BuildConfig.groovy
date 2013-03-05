@@ -4,7 +4,7 @@ grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
-grails.project.war.file = "/home/reperion/lolview.war"
+grails.project.war.file = "/home/reperion/deploy/lolview.war"
 
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
@@ -44,6 +44,7 @@ grails.project.dependency.resolution = {
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.0"
         runtime ":resources:1.1.6"
+		runtime ":spock:0.7"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
