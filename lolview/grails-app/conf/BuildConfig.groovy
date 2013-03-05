@@ -4,7 +4,7 @@ grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
-grails.project.war.file = "/home/reperion/deploy/lolview.war"
+grails.project.war.file = "/home/reperion/apps/tomcat/webapps/lolview.war"
 
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
@@ -36,8 +36,8 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
         // runtime 'mysql:mysql-connector-java:5.1.20'
-		build "org.neo4j:neo4j:1.8"
-		build 'org.neo4j:neo4j-rest-graphdb:1.8'
+		compile "org.neo4j:neo4j:1.8"
+		compile 'org.neo4j:neo4j-rest-graphdb:1.8'
 		test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
     }
 
